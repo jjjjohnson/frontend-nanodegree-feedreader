@@ -91,10 +91,12 @@ $(function() {
          */
         beforeEach(function(done) {
             loadFeed(0, done);
+            done();
         });
-        it('has at least a single .entry element within the .feed container', function() {
+        it('has at least a single .entry element within the .feed container', function(done) {
             entry = $('.feed .entry');
             expect(entry.length).not.toBe(0);
+            done();
         });
     });
     /* TODO: Write a new test suite named "New Feed Selection" */
@@ -106,22 +108,22 @@ $(function() {
         // store the new content and old content
         var oldContent, newContent;
 
-        beforeEach(function() {
+        beforeEach(function(done) {
             // Get the content for loadFeed(0)
             loadFeed(0, function() {
                 oldContent = $('.feed').text();
                 console.log('oldContent', oldContent);
                 // Get the content for loadFeed(1)
-                loadFeed(1, function() {
+                loadFeed(2, function() {
                     newContent = $('.feed').text();
                     console.log('newContent', newContent);
                     // All feeds received, call done() 
+                    done();
         
                 });
             });
         });
         it('new feed changes current content', function(done) {
-            newContent = $('.feed').text();
             // console.log('oldUrl: ',oldUrl);
             expect(newContent).not.toBe(oldContent);
             done();
