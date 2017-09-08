@@ -57,7 +57,7 @@ $(function() {
 
 
     /* TODO: Write a new test suite named "The menu" */
-    describe('The munu', function() {
+    describe('The menu', function() {
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
@@ -104,16 +104,28 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-        var oldUrl, newUrl;
+        // store the new url and old url
+        var oldContent, newContent;
 
         beforeEach(function(done) {
-            loadFeed(0, done);
-            oldUrl = $('.entry-link').attr('href');
-            // calls next feed
-            loadFeed(1, done);
+            // Get the content for loadFeed(0)
+            loadFeed(0, function() {
+                oldContent = $('.feed').text();
+                // console.log(oldContent);
+                // Get the content for loadFeed(1)
+                loadFeed(1, function() {
+                    newContent = $('.feed').text();
+                    // console.log(newContent);
+                    // All feeds received, call done() 
+                    done();
+                });
+            });
         });
+        oldUrl = $('.entry-link').attr('href');
+        // console.log('oldUrl: ',oldUrl);
         it('new feed changes current content', function(done) {
             newUrl = $('.entry-link').attr('href');
+            // console.log('oldUrl: ',oldUrl);
             expect(newUrl).not.toBe(oldUrl);
             done();
         });
