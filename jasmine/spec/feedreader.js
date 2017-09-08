@@ -91,8 +91,7 @@ $(function() {
          */
         beforeEach(function(done) {
             loadFeed(0, done);
-            done();
-        });
+         });
         it('has at least a single .entry element within the .feed container', function(done) {
             entry = $('.feed .entry');
             expect(entry.length).not.toBe(0);
@@ -119,7 +118,6 @@ $(function() {
                     console.log('newContent', newContent);
                     // All feeds received, call done() 
                     done();
-        
                 });
             });
         });
