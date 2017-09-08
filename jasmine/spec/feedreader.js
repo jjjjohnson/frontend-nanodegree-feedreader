@@ -32,11 +32,11 @@ $(function() {
          * and that the URL is not empty.
          */
          it('has URL', function() {
-            for (feed of allFeeds){
+            allFeeds.forEach(function(feed) {
                 // check the url defined and length not zero
                 expect(feed.url).toBeDefined();
                 expect(feed.url.length).not.toBe(0);
-            }
+            });
          });
 
 
@@ -45,13 +45,13 @@ $(function() {
          * and that the name is not empty.
          */
         it('has name', function() {
-        for (feed of allFeeds){
-            // check the name defined and length not zero
-            expect(feed.name).toBeDefined();
-            expect(feed.name.length).not.toBe(0);
-            // console.log('feed',feed);
-            // console.log('feed name',feed.name);
-        }
+            allFeeds.forEach(function(feed) {
+                // check the name defined and length not zero
+                expect(feed.name).toBeDefined();
+                expect(feed.name.length).not.toBe(0);
+                // console.log('feed',feed);
+                // console.log('feed name',feed.name);
+            });
      });
     });
 
